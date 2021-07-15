@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:45:44 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/11 18:23:30 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/15 20:28:33 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@
 
 typedef struct s_node {
 
-	int	value;
-	struct node *next;
+	int	val;
+	struct s_node *next;
+	struct s_node *prev;
 }				t_node;
 
 void	sa(int *a);
 void	sb(int *b);
 void	ss(int *a, int *b);
 void	pa(int *a, int *b);
-
-
+int	ft_atoi(char *str);
+void	list_insert_end(t_node **head, int val, int i, int ac);
+void	error_exit(char	*str, int len);
+void	free_list(t_node *head, int ac);
 
 #endif
 

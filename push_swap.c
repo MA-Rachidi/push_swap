@@ -6,14 +6,29 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/13 19:01:15 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/15 20:30:08 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
 
-void	list_insert_end(t_node **head, int val)
+void	free_list(t_node *head, int ac)
+{
+   t_node *tmp;
+   int	i;
+
+   i = 0;
+   while (i < ac)
+    {
+       tmp = head;
+       head = head->next;
+       free(tmp);
+	   i++;
+    }
+}
+
+void	list_insert_end(t_node **head, int value, int i, int ac)
 {
 	t_node	*node;
 	t_node	*curr;
@@ -22,21 +37,36 @@ void	list_insert_end(t_node **head, int val)
 	if (!(node))
 		exit(1);
 	node->next = NULL;
-	node->value = val;
+	node->val = value;
 	curr = *head;
 	if (*head == NULL)
 	{
 		*head = node;
+		(*head)->prev = NULL;
 		return;
 	}
-	while (curr != NULL)
-		cuur = curr->next;
+	while (curr->next != NULL)
+		curr = curr->next;
 	curr->next = node;
+	node->prev = curr;
+	if (i == ac - 1)
+	{
+		(*head)->prev = node;
+		node->next = *head;
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_node	*node = NULL;
-	
+	int	i;
+
+	i = 0;
+	if (ac < 1)
+		exit(1);
+	while (++i < ac)
+		list_insert_end(&node, ft_atoi(av[i]), i, ac);
+	printf("le nombre dernier %d",node->prev->prev->val);
+	free_list(node, ac - 1);
 	return (0);
 }

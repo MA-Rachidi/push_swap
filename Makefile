@@ -1,7 +1,7 @@
-NAME = checker
+NAME = push_swap
 
 
-file_srcs = checker.c
+file_srcs = push_swap.c help_1.c
 
 
 file_obj =  $(file_srcs:.c=.o)
