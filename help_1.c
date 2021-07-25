@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/25 20:30:03 by mrachidi          #+#    #+#             */
+/*   Updated: 2021/07/25 20:35:03 by mrachidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   help_1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 10:41:10 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/15 13:47:07 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/25 20:29:43 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +56,31 @@ int	ft_atoi(char *str)
 	return (nb * sign);
 }
 
+void	check_duplicate(t_node *head, int len)
+{
+	int	i;
+	int	j;
+	int	x;
+	t_node	*tmp;
+	t_node	*tmp2;
+
+	x = 0;
+	i = -1;
+	j = -1;
+	tmp = head;
+	tmp2 = head;
+	while (++i < len)
+	{
+		while (++j < len)
+		{
+			if (tmp->val == tmp2->val)
+				x++;
+			tmp2 = tmp2->next;
+		}
+		j = -1;
+		tmp2 = head;
+		tmp = tmp->next;
+	}
+	if (x > len)
+		error_exit("Error\n", 6);
+}

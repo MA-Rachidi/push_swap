@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 09:43:14 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/15 20:44:57 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/25 21:53:26 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	pa(t_node *a, t_node *b)
 	a->val = b->val;
 	a->next->val = temp;
 	b->val = b->next->val: 
+	write (1, "pa\n", 3);
 }
 
 void	pb(int *a, int *b)
@@ -61,4 +62,5 @@ void	pb(int *a, int *b)
 	b->val = a->val;
 	b->next->val = temp;
 	a->val = a->next->val; 
+	write (1, "pb\n", 3);
 }  

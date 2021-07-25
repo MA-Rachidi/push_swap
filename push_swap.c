@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/15 20:30:08 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/25 19:38:51 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int	main(int ac, char **av)
 	int	i;
 
 	i = 0;
-	if (ac < 1)
+	if (ac <= 1)
 		exit(1);
 	while (++i < ac)
 		list_insert_end(&node, ft_atoi(av[i]), i, ac);
-	printf("le nombre dernier %d",node->prev->prev->val);
+	check_duplicate(node, ac - 1);
 	free_list(node, ac - 1);
 	return (0);
 }
