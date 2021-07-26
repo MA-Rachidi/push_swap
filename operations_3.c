@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_2.c                                     :+:      :+:    :+:   */
+/*   operations_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 19:06:42 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/26 18:58:35 by mrachidi         ###   ########.fr       */
+/*   Created: 2021/07/26 15:20:54 by mrachidi          #+#    #+#             */
+/*   Updated: 2021/07/26 18:59:16 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_node **a)
-{
-	*a = (*a)->next;
-	write (1, "ra\n", 3);
-}
-
-void	rb(t_node **b)
-{
-	*b = (*b)->next;
-	write (1, "rb\n", 3);
-}
-void	rr(t_node **a, t_node **b)
-{
-	*a = (*a)->next;
-	*b = (*b)->next;
-	write (1, "rr\n", 3);
-}
-void	rra(t_node **a)
+void	rrr(t_node **a, t_node **b)
 {
 	*a = (*a)->prev;
-	write (1, "rra\n", 4);
-}
-void	rrb(t_node **b)
-{
 	*b = (*b)->prev;
-	write (1, "rrb\n", 4);
+	write (1, "rrb\n", 3);
 }
-

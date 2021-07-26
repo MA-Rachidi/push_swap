@@ -1,7 +1,7 @@
 NAME = push_swap
 
 
-file_srcs = push_swap.c help_1.c
+file_srcs = push_swap.c help_1.c operations_1.c operations_2.c operations_3.c sorting_algo_1.c
 
 
 file_obj =  $(file_srcs:.c=.o)

@@ -6,20 +6,35 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/25 19:38:51 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:10:38 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
 
-void	free_list(t_node *head, int ac)
+static void	print_list(t_node *head, int len)
 {
    t_node *tmp;
    int	i;
 
    i = 0;
-   while (i < ac)
+   while (i < len)
+    {
+       tmp = head;
+       head = head->next;
+       printf("%d --------> %d\n", i, tmp->val);
+	   i++;
+    }
+}
+
+void	free_list(t_node *head, int len)
+{
+   t_node *tmp;
+   int	i;
+
+   i = 0;
+   while (i < len)
     {
        tmp = head;
        head = head->next;
@@ -67,6 +82,11 @@ int	main(int ac, char **av)
 	while (++i < ac)
 		list_insert_end(&node, ft_atoi(av[i]), i, ac);
 	check_duplicate(node, ac - 1);
+	if (ac == 4)
+		sort_3(&node);
+	//write (1, "\n\n\n", 3);
+	//print_list(node, ac - 1);
+	//check_sorting(node, ac -1);
 	free_list(node, ac - 1);
 	return (0);
 }

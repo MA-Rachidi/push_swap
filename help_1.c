@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 20:30:03 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/25 20:35:03 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/26 21:06:58 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,22 @@ void	check_duplicate(t_node *head, int len)
 	}
 	if (x > len)
 		error_exit("Error\n", 6);
+}
+
+void	check_sorting(t_node *head, int len)
+{
+	int	i;
+
+	i = 1;
+	while (i <= len)
+	{
+		if (head->val > head->next->val)
+			break;
+		head = head->next;
+		i++;
+	}
+	if (i == len)
+		write (1, "OK\n", 3);
+	else
+		write (1, "KO\n", 3);
 }
