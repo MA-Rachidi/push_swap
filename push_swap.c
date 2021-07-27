@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/26 21:10:38 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/27 21:15:48 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,60 +15,55 @@
 
 static void	print_list(t_node *head, int len)
 {
-   t_node *tmp;
-   int	i;
+	t_node *tmp;
+	int	i;
 
-   i = 0;
-   while (i < len)
-    {
-       tmp = head;
-       head = head->next;
-       printf("%d --------> %d\n", i, tmp->val);
-	   i++;
-    }
+	i = 0;
+	while (i < len)
+	{
+		tmp = head;
+		head = head->next;
+		printf("%d --------> %d\n", i, tmp->val);
+		i++;
+	}
 }
 
 void	free_list(t_node *head, int len)
 {
-   t_node *tmp;
-   int	i;
+	t_node *tmp;
+	int	i;
 
-   i = 0;
-   while (i < len)
-    {
-       tmp = head;
-       head = head->next;
-       free(tmp);
-	   i++;
-    }
+	i = 0;
+	while (i < len)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+		i++;
+	}
 }
 
-void	list_insert_end(t_node **head, int value, int i, int ac)
+void	list_insert_end(t_node **head, int value)
 {
 	t_node	*node;
-	t_node	*curr;
+	t_node	*tail;
 
 	node = malloc(sizeof(t_node));
 	if (!(node))
 		exit(1);
-	node->next = NULL;
 	node->val = value;
-	curr = *head;
 	if (*head == NULL)
 	{
+		node->next = node;
+		node->prev = node;
 		*head = node;
-		(*head)->prev = NULL;
 		return;
 	}
-	while (curr->next != NULL)
-		curr = curr->next;
-	curr->next = node;
-	node->prev = curr;
-	if (i == ac - 1)
-	{
-		(*head)->prev = node;
-		node->next = *head;
-	}
+	tail = (*head)->prev;
+	node->next = *head;
+	(*head)->prev = node;
+	node->prev = tail;
+	tail->next = node;
 }
 
 int	main(int ac, char **av)
@@ -80,12 +75,12 @@ int	main(int ac, char **av)
 	if (ac <= 1)
 		exit(1);
 	while (++i < ac)
-		list_insert_end(&node, ft_atoi(av[i]), i, ac);
+		list_insert_end(&node, ft_atoi(av[i]));
 	check_duplicate(node, ac - 1);
 	if (ac == 4)
 		sort_3(&node);
 	//write (1, "\n\n\n", 3);
-	//print_list(node, ac - 1);
+	print_list(node, ac - 1);
 	//check_sorting(node, ac -1);
 	free_list(node, ac - 1);
 	return (0);

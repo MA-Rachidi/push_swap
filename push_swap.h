@@ -6,7 +6,7 @@
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:45:44 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/26 20:56:54 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/07/27 21:12:15 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rr(t_node **a, t_node **b);
 void	rra(t_node **a);
 void	rrb(t_node **b);
 int	ft_atoi(char *str);
-void	list_insert_end(t_node **head, int val, int i, int ac);
+void	list_insert_end(t_node **head, int val);
 void	error_exit(char	*str, int len);
 void	free_list(t_node *head, int len);
 void	check_duplicate(t_node *head, int len);
