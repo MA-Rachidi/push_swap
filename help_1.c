@@ -3,22 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 20:30:03 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/26 21:06:58 by mrachidi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   help_1.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 10:41:10 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/07/25 20:29:43 by mrachidi         ###   ########.fr       */
+/*   Updated: 2021/08/15 15:51:01 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +73,45 @@ void	check_duplicate(t_node *head, int len)
 		error_exit("Error\n", 6);
 }
 
-void	check_sorting(t_node *head, int len)
+int	check_sorting(t_node *head)
 {
-	int	i;
-
-	i = 1;
-	while (i <= len)
+	t_node	*curr;
+	t_node	*tail;
+	
+	curr = head;
+	tail = head->prev;
+	while (curr != tail)
 	{
-		if (head->val > head->next->val)
+		if (curr->val < curr->next->val)
 			break;
-		head = head->next;
-		i++;
+		curr = curr->next;
 	}
-	if (i == len)
-		write (1, "OK\n", 3);
+	if (curr == tail)
+		return (1);
 	else
-		write (1, "KO\n", 3);
+		return (0);
+}
+
+void	list_insert_first(t_node **head, int value)
+{
+	t_node	*node;
+	t_node	*tail;
+
+	node = malloc(sizeof(t_node));
+	if (!(node))
+		exit(1);
+	node->val = value;
+	if (*head == NULL)
+	{
+		node->next = node;
+		node->prev = node;
+		*head = node;
+		return;
+	}
+	tail = (*head)->prev;
+	node->next = *head;
+	(*head)->prev = node;
+	node->prev = tail;
+	tail->next = node;
+	(*head) = node;
 }
