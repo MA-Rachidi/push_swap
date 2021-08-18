@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 16:45:44 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/08/15 15:15:00 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/08/18 11:14:48 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,21 @@ void	free_list(t_node *head);
 void	check_duplicate(t_node *head, int len);
 int	check_sorting(t_node *head);
 void	list_delete_fist(t_node **head);
+int	list_lenght(t_node *head);
 int	find_min(t_node *head);
 int	find_max(t_node *head);
 int	find_center(t_node *head, int len, int min);
 void	find_pass_b(t_node **a, t_node **b, int len);
 int	find_center_max(t_node *head, int len, int max);
-void	if_first_suivie(t_node **head);
+int	if_first_suivie(t_node **a, t_node **b, int j);
 int	first3_pa(t_node **a, t_node **b);
-int	pa3_to_a(t_node **a, t_node **b);
+int	*check_rb_or_rrb(t_node *head, int j, int max);
+int	pa3_to_a(t_node **a, t_node **b, int j);
 void	sort_3(t_node **a);
-void	algo_sort(t_node **a, t_node **b, int ind);
+void	sort_3_of_5(t_node **a, t_node **b);
+void	sort_5(t_node **a, t_node **b);
+void	sort_up_3(t_node **a);
+void	algo_sort(t_node **a, t_node **b, int len, int ind);
 
 
 #endif

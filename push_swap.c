@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/08/15 16:05:26 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/08/18 11:40:21 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,23 @@
 // 	}
 // 	printf("%d --------> %d\n", i, tail->val);
 // }
+
+int list_lenght(t_node *head)
+{
+    int i;
+    t_node *curr;
+    t_node *tail;
+
+    i = 1;
+    curr = head;
+    tail = head->prev;
+    while (curr != tail)
+    {
+        curr = curr->next;
+        i++;
+    }
+    return (i);
+}
 
 void	free_list(t_node *head)
 {
@@ -85,19 +102,20 @@ int	main(int ac, char **av)
 		exit(1);
 	while (++i < ac)
 		list_insert_end(&node, ft_atoi(av[i]));
-	i = 0;
-	//while (++i < 10)
-	//	list_insert_end(&b, i);
 	check_duplicate(node, ac - 1);
 	if (ac == 4)
 		sort_3(&node);
-	//write (1, "\n\n\n", 3);
-	find_pass_b(&node, &b, ac - 1);
-	algo_sort(&node, &b, 0);
-	//print_list(node);
-	//write (1, "\n\n", 2);
-	//print_list(b);
+	else if (ac == 6)
+	{
+		printf ("HELLO\n");
+		sort_5(&node, &b);
+	}
+	else
+	{
+		find_pass_b(&node, &b, ac - 1);
+		algo_sort(&node, &b,ac - 1, 0);
+	}
 	free_list(node);
-	//free_list(b);
+	free_list(b);
 	return (0);
 }

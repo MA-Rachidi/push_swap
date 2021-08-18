@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 22:39:16 by mohamed           #+#    #+#             */
-/*   Updated: 2021/08/15 15:49:32 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/08/18 10:46:42 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,42 +87,51 @@ void    find_pass_b(t_node **a, t_node **b, int len)
 
     i = 0;
     if (len > 200)
-        count = len / 5;
-    else
+        count = len / 8;
+    else if (len > 50)
         count = len / 4;
+    else
+        count = len / 2;
     len = len - count;
     val = find_min(*a);
     val = find_center(*a, count, val);
-    while (i < count)
+    while (i++ < count)
     {    
         while ((*a)->val >= val)
             ra(a);
-        pb(a, b);
-        i++;   
+        pb(a, b);   
     }
-    i = 3;
     if (count != 0)
         find_pass_b(a, b, len);
     else
-        while (0 < i--)
+        while (*a == NULL)
             pb(a, b);  
 }
 
-void    if_first_suivie(t_node **head)
+int if_first_suivie(t_node **a, t_node **b, int j)
 {
     int val;
 
-    val = (*head)->prev->val;
-    val = find_center_max(*head, 1, val);
-    while ((*head)->val == val || (*head)->next->val == val)
+    val = (*a)->val;
+    val = find_center_max(*b, 1, val);
+    while ((*b)->val == val || (*b)->next->val == val || (*b)->prev->val == val ||
+        (*b)->prev->prev->val == val)
     {
-        if ((*head)->val == val)
-            rb(head);
+        if ((*b)->val == val)
+            pa(a, b);
+        else if ((*b)->next->val == val)
+            sb(b), pa(a, b);
+        else if ((*b)->prev->val == val)
+            rrb(b), pa(a, b), j--;
         else
-            sb(head), rb(head);
-        val = (*head)->prev->val;
-        if (val == find_min(*head))
+        {
+            rrb(b), rrb(b), pa(a, b);
+            j = j - 2;
+        }
+        val = (*a)->val;
+        if (*b == NULL)
             break;
-        val = find_center_max(*head, 1, val);
+        val = find_center_max(*b, 1, val);
     }
+    return (j);
 }

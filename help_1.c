@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 10:41:10 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/08/15 15:51:01 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/08/17 08:15:04 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	check_sorting(t_node *head)
 	tail = head->prev;
 	while (curr != tail)
 	{
-		if (curr->val < curr->next->val)
+		if (curr->val > curr->next->val)
 			break;
 		curr = curr->next;
 	}
