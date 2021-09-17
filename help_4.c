@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_3.c                                     :+:      :+:    :+:   */
+/*   help_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/26 15:20:54 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/09/15 11:12:15 by mrachidi         ###   ########.fr       */
+/*   Created: 2021/09/04 11:55:09 by mrachidi          #+#    #+#             */
+/*   Updated: 2021/09/15 20:06:32 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(t_node **a, t_node **b, int i)
+int	check_if_0_1(int k, int len, int j)
 {
-	if (*a == NULL || *b == NULL)
-		return ;
-	*a = (*a)->prev;
-	*b = (*b)->prev;
-	if (i == 1)
-		write (1, "rrr\n", 3);
+	if (k > (len - j))
+		return (1);
+	else
+		return (0);
+}
+
+void	sort_2(t_node **a)
+{
+	if ((*a)->val > (*a)->next->val)
+		sa(a, 1);
 }

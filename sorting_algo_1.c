@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_algo_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 19:43:26 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/08/18 11:41:17 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/09/15 20:00:34 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
 void	sort_3(t_node **a)
 {
 	if ((*a)->val > (*a)->next->val && (*a)->next->val > (*a)->prev->val)
-		sa(a), rra(a);
+		sa(a, 1), rra(a, 1);
 	if ((*a)->val < (*a)->next->val && (*a)->next->val > (*a)->prev->val)
-		sa(a), ra(a);
+		sa(a, 1), ra(a, 1);
 	if ((*a)->val > (*a)->next->val && (*a)->val > (*a)->prev->val)
-		ra(a);
+		ra(a, 1);
 	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->prev->val)
-		sa(a);
+		sa(a, 1);
 	if ((*a)->val > (*a)->prev->val && (*a)->val < (*a)->next->val)
-		rra(a);
+		rra(a, 1);
 }
 
 void	sort_3_of_5(t_node **a, t_node **b)
@@ -32,61 +31,61 @@ void	sort_3_of_5(t_node **a, t_node **b)
 	if ((*a)->val > (*a)->next->val && (*a)->next->val > (*a)->prev->val)
 	{
 		if ((*b)->val < (*b)->next->val)
-			ss(a, b), rra(a);
+			ss(a, b, 1), rra(a, 1);
 		else
-			sa(a), rra(a);
+			sa(a, 1), rra(a, 1);
 	}
 	if ((*a)->val < (*a)->next->val && (*a)->next->val > (*a)->prev->val)
 	{
 		if ((*b)->val < (*b)->next->val)
-			ss(a, b), ra(a);
+			ss(a, b, 1), ra(a, 1);
 		else
-			sa(a), ra(a);
+			sa(a, 1), ra(a, 1);
 	}
 	if ((*a)->val > (*a)->next->val && (*a)->val > (*a)->prev->val)
-		ra(a);
+		ra(a, 1);
 	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->prev->val)
-		sa(a);
+		sa(a, 1);
 	if ((*a)->val > (*a)->prev->val && (*a)->val < (*a)->next->val)
-		rra(a);
+		rra(a, 1);
 }
 
 void	sort_5(t_node **a, t_node **b)
 {
 	int	i;
 	int	min;
-	
+
 	i = 0;
 	min = find_min(*a);
-    min = find_center(*a, 2, min);
-    while (i++ < 2)
-    {    
-        while ((*a)->val >= min)
-            ra(a);
-        pb(a, b);   
-    }
+	min = find_center(*a, 2, min);
+	while (i++ < 2)
+	{
+		while ((*a)->val >= min)
+			ra(a, 1);
+		pb(a, b, 1);
+	}
 	sort_3_of_5(a, b);
 	if ((*b)->val < (*b)->next->val)
-		sb(b);
-	pa(a, b), pa(a, b); 
+		sb(b, 1);
+	pa(a, b, 1), pa(a, b, 1);
 }
 
 void	sort_up_3(t_node **a)
 {
 	if ((*a)->val > (*a)->next->val && (*a)->next->val > (*a)->next->next->val)
-		sa(a), ra(a), sa(a), rra(a), sa(a);
-	if ((*a)->val < (*a)->next->val && (*a)->next->val > (*a)->next->next->val &&
-		(*a)->val < (*a)->next->next->val)
-		ra(a), sa(a), rra(a);
-	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->next->next->val &&
-		(*a)->val > (*a)->next->next->val)
-		sa(a), ra(a), sa(a), rra(a);
-	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->next->next->val &&
-		(*a)->val < (*a)->next->next->val)
-		sa(a);
-	if ((*a)->val < (*a)->next->val && (*a)->next->next->val < (*a)->next->val &&
-		(*a)->val > (*a)->next->next->val)
-		ra(a), sa(a), rra(a), sa(a);
+		sa(a, 1), ra(a, 1), sa(a, 1), rra(a, 1), sa(a, 1);
+	if ((*a)->val < (*a)->next->val && (*a)->next->val > (*a)->next->next->val
+		&& (*a)->val < (*a)->next->next->val)
+		ra(a, 1), sa(a, 1), rra(a, 1);
+	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->next->next->val
+		&& (*a)->val > (*a)->next->next->val)
+		sa(a, 1), ra(a, 1), sa(a, 1), rra(a, 1);
+	if ((*a)->val > (*a)->next->val && (*a)->next->val < (*a)->next->next->val
+		&& (*a)->val < (*a)->next->next->val)
+		sa(a, 1);
+	if ((*a)->val < (*a)->next->val && (*a)->next->next->val < (*a)->next->val
+		&& (*a)->val > (*a)->next->next->val)
+		ra(a, 1), sa(a, 1), rra(a, 1), sa(a, 1);
 }
 
 void	algo_sort(t_node **a, t_node **b, int len, int ind)

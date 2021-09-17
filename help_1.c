@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 10:41:10 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/08/17 08:15:04 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/09/04 12:17:53 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_atoi(char *str)
 
 void	check_duplicate(t_node *head, int len)
 {
-	int	i;
-	int	j;
-	int	x;
+	int		i;
+	int		j;
+	int		x;
 	t_node	*tmp;
 	t_node	*tmp2;
 
@@ -77,13 +77,13 @@ int	check_sorting(t_node *head)
 {
 	t_node	*curr;
 	t_node	*tail;
-	
+
 	curr = head;
 	tail = head->prev;
 	while (curr != tail)
 	{
 		if (curr->val > curr->next->val)
-			break;
+			break ;
 		curr = curr->next;
 	}
 	if (curr == tail)
@@ -106,7 +106,7 @@ void	list_insert_first(t_node **head, int value)
 		node->next = node;
 		node->prev = node;
 		*head = node;
-		return;
+		return ;
 	}
 	tail = (*head)->prev;
 	node->next = *head;

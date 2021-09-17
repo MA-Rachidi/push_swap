@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   help_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrachidi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 20:42:04 by mrachidi          #+#    #+#             */
-/*   Updated: 2021/09/15 20:05:37 by mrachidi         ###   ########.fr       */
+/*   Created: 2021/09/13 11:25:37 by mrachidi          #+#    #+#             */
+/*   Updated: 2021/09/13 15:57:51 by mrachidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	list_lenght(t_node *head)
+void	error_exit(char	*str, int len)
 {
-	int		i;
-	t_node	*curr;
-	t_node	*tail;
-
-	i = 1;
-	if (head == NULL)
-		return (0);
-	curr = head;
-	tail = head->prev;
-	while (curr != tail)
-	{
-		curr = curr->next;
-		i++;
-	}
-	return (i);
+	write(1, str, len);
+	exit(0);
 }
 
 void	free_list(t_node *head)
@@ -71,31 +58,57 @@ void	list_insert_end(t_node **head, int value)
 	tail->next = node;
 }
 
-int	main(int ac, char **av)
+void	check_duplicate(t_node *head, int len)
 {
-	t_node	*node;
-	t_node	*b;
 	int		i;
+	int		j;
+	int		x;
+	t_node	*tmp;
+	t_node	*tmp2;
 
-	node = NULL;
-	b = NULL;
+	x = 0;
+	i = -1;
+	j = -1;
+	tmp = head;
+	tmp2 = head;
+	while (++i < len)
+	{
+		while (++j < len)
+		{
+			if (tmp->val == tmp2->val)
+				x++;
+			tmp2 = tmp2->next;
+		}
+		j = -1;
+		tmp2 = head;
+		tmp = tmp->next;
+	}
+	if (x > len)
+		error_exit("Error\n", 6);
+}
+
+int	ft_atoi(char *str)
+{
+	int			i;
+	long int	nb;
+	int			sign;
+
 	i = 0;
-	if (ac <= 2)
-		exit(1);
-	while (++i < ac)
-		list_insert_end(&node, ft_atoi(av[i]));
-	check_duplicate(node, ac - 1);
-	if (check_sorting(node) == 1)
-		exit(1);
-	if (ac == 3)
-		sort_2(&node);
-	else if (ac == 4)
-		sort_3(&node);
-	else if (ac == 6)
-		sort_5(&node, &b);
-	else
-		find_pass_b(&node, &b, ac - 1), algo_sort(&node, &b, ac - 1, 0);
-	free_list(node);
-	free_list(b);
-	return (0);
+	sign = 1;
+	nb = 0;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + str[i] - '0';
+		if (nb * sign < -2147483648)
+			error_exit("Error\n", 6);
+		if (nb * sign > 2147483647)
+			error_exit("Error\n", 6);
+		i++;
+	}
+	if (str[i] != '\0')
+		error_exit("Error\n", 6);
+	return (nb * sign);
 }
